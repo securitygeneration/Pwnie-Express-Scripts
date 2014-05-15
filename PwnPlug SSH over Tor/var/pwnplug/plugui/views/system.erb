@@ -1,0 +1,51 @@
+<!-- 
+# Pwnie Expres Plug UI Revision: 7.5.2011
+# Copyright 2010-2015 Rapid Focus Security, LLC, DBA Pwnie Express
+# pwnieexpress.com
+#
+# This file contains proprietary software distributed under the terms of the Rapid Focus Security, LLC End User License Agreement (EULA).
+#
+# Use of this software signifies your agreement to the Rapid Focus Security, LLC End User License Agreement (EULA).
+#
+# Rapid Focus Security, LLC EULA: http://pwnieexpress.com/pdfs/RFSEULA.pdf
+#
+
+-->
+
+<br/>
+<pre><%= `uname -a` %></pre>
+<br/>
+<h2>Connected Users</h2>
+<pre><%= `w` %></pre><br/>
+
+<h2>Onboard NIC (ifconfig eth0)</h2>
+<pre><%= `ifconfig eth0` %></pre><br/>
+
+<h2>Routes (route -n)</h2>
+<pre><%= `route -n` %></pre><br/>
+
+<h2>DNS (/etc/resolv.conf)</h2>
+<pre><%= `cat /etc/resolv.conf` %></pre><br/>
+
+<h2>Log tail</h2>
+<pre><%= `tail /var/log/messages` %></pre><br/>
+
+<h2>Disk Usage</h2>
+<pre><%= `df -h` %></pre><br/>
+
+<h2>Reverse Shells</h2><br/>
+<strong>Reverse SSH:</strong><br/>
+<pre><%= is_running("3333") %></pre><br/>
+<strong>Reverse SSH over HTTP tunnel:</strong><br/>
+<pre><%= is_running("3338") %></pre><br/>
+<strong>Reverse SSH over SSL tunnel: </strong><br/>
+<pre><%= is_running("3336") %></pre><br/>
+<strong>Reverse SSH over DNS tunnel:</strong><br/>
+<pre><%= is_running("3335") %></pre><br/>
+<strong>Reverse SSH over ICMP tunnel:</strong><br/>
+<pre><%= is_running("3339") %></pre><br/>
+<strong>Reverse SSH over cellular 3G/GSM:</strong><br/>
+<pre><%= is_running("3337") %></pre><br/>
+<strong>Reverse SSH over Tor:</strong><br/>
+<pre><%= is_running("3330") %></pre><br/>
+

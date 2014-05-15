@@ -1,0 +1,129 @@
+<!-- 
+# Pwnie Expres Plug UI Revision: 7.5.2011
+# Copyright 2010-2015 Rapid Focus Security, LLC, DBA Pwnie Express
+# pwnieexpress.com
+#
+# This file contains proprietary software distributed under the terms of the Rapid Focus Security, LLC End User License Agreement (EULA).
+#
+# Use of this software signifies your agreement to the Rapid Focus Security, LLC End User License Agreement (EULA).
+#
+# Rapid Focus Security, LLC EULA: http://pwnieexpress.com/pdfs/RFSEULA.pdf
+#
+
+-->
+<h2 class="alert"><%= @alert %></h2>
+<ol>
+<li>Use the checkboxes to indicate the reverse shells you'd like to enable</li>
+<li>Enter the SSH receiver addresses/ports for each reverse shell</li>
+<li>Choose how often each reverse shell connection should be attempted</li>
+<li>Click "Configure all shells" at the bottom of the page to apply your changes</li>
+<li>Current Settings are Displayed</li>
+</ol>
+<br/>
+<form action="/script" method="post" >
+	<div>
+	<p>
+		<input name="tcp_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh.sh") %> >
+		<span class="blue"><strong>Standard Reverse SSH</strong></span>
+	</p>
+	<p>
+		SSH Receiver (IP or DNS name):
+		<input name="tcp_ssh_ip" type="text" value="<%= call_value('SSH_receiver=','reverse_ssh_config.sh') %>" >
+	</p>
+	<p>
+		SSH Receiver Port:
+<input name="tcp_ssh_port" type="text" value="<%= call_value('SSH_receiver_port','reverse_ssh_config.sh') %>">	</p>
+	
+	<%= cron_timer_options("tcp_ssh_cron","reverse_ssh.sh") %>
+
+	</div>
+<br/><br/>
+	<div>
+	<p>
+		<input name="http_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh_over_HTTP.sh") %> >
+		<span class="blue"><strong>SSH over HTTP Tunnel</strong></span>
+	</p>
+	<p>
+		SSH Receiver (IP or DNS name):
+		<input name="http_ssh_ip" type="text" value="<%= call_value('HTTPtunnel_receiver','reverse_ssh_over_HTTP_config.sh') %>">
+	</p>
+	<%= cron_timer_options("http_ssh_cron","reverse_ssh_over_HTTP.sh") %>
+
+</div>
+<br/><br/>
+	<div>
+	<p>
+		<input name="ssl_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh_over_SSL.sh") %>>
+		<span class="blue"><strong>SSH over SSL Tunnel</strong></span>
+	</p>
+	<p>
+		SSH Receiver (IP or DNS name):
+		<input name="ssl_ssh_ip" type="text" value="<%= call_value('stunnel_receiver','reverse_ssh_over_SSL_config.sh') %>">
+	</p>
+		<%= cron_timer_options("ssl_ssh_cron","reverse_ssh_over_SSL.sh") %>
+
+</div>
+<br/><br/>
+	<div>
+	<p>
+		<input name="dns_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh_over_DNS.sh") %> >
+		<span class="blue"><strong>SSH over DNS Tunnel</strong></span>
+	</p>
+	<p>
+	SSH Receiver (IP or DNS name):
+		<input name="dns_ssh_ip" type="text" value="<%= call_value('DNStunnel_receiver','reverse_ssh_over_DNS_config.sh') %>">
+	</p>
+	<%= cron_timer_options("dns_ssh_cron","reverse_ssh_over_DNS.sh") %>
+
+</div>
+<br/><br/>
+	<div>
+	<p>
+		<input name="icmp_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh_over_ICMP.sh") %> >
+		<span class="blue"><strong>SSH over ICMP Tunnel</strong></span>
+	</p>
+	<p>
+	SSH Receiver (IP or DNS name):
+		<input name="icmp_ssh_ip" type="text" value="<%= call_value('SSH_receiver','reverse_ssh_over_ICMP_config.sh') %>"
+	</p>
+	<%= cron_timer_options("icmp_ssh_cron","reverse_ssh_over_ICMP.sh") %>
+
+</div>
+<br/><br/>
+	<div>
+	<p>
+		<input name="gsm_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh_over_3G.sh") %> >
+		<span class="blue"><strong>SSH over 3G/GSM (PWNPlug 3G Only)</strong></span>
+	</p>
+	<p>
+	SSH Receiver (IP or DNS name):
+		<input name="gsm_ssh_ip" type="text" value="<%= call_value('SSH_receiver','reverse_ssh_over_3G_config.sh') %>">
+	</p>
+	<p>
+	3G/GSM Adapter
+		<select name="gsm_ssh_adapter">
+		  <option name="unlocked_gsm" <%= selected_adapter("e160") %> >Unlocked GSM</option>
+		  <option name="verizon_virgin_mobile" <%= selected_adapter("1xevdo") %> >Verizon/Virgin Mobile</option>
+		</select>
+	</p>
+	<%= cron_timer_options("gsm_ssh_cron","reverse_ssh_over_3G.sh") %>
+
+</div>
+<br/><br/>
+	
+<div>
+        <p>
+                <input name="tor_ssh" type="checkbox" <%= check_cron_make_checked("reverse_ssh_over_Tor.sh") %> >
+                <span class="blue"><strong>SSH over Tor</strong></span>
+        </p>
+        <p>
+        SSH Receiver (Tor Hidden Service Name):
+                <input name="tor_ssh_address" type="text" value="<%= call_value('Tor_receiver','reverse_ssh_over_Tor_config.sh') %>">
+        </p>
+        <%= cron_timer_options("tor_ssh_cron","reverse_ssh_over_Tor.sh") %>
+
+</div>
+<br/><br/>
+
+	<input type="submit" value="Configure All Shells">
+</form>
