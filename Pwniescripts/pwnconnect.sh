@@ -81,4 +81,4 @@ if [ "$netstat" != "" ]; then
 	echo "[+] Found: Reverse SSH over Tor. Connecting..."
         ssh root@localhost -p 3330 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
         exit 0
-if
+fi
