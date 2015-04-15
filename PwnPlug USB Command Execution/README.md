@@ -54,7 +54,7 @@ Instructions
   ```shell
   udevadm info -a -p /sys/block/sda | grep model
   ```
-6. Copy cmdusb.sh to /usr/local/bin/cmdusb.sh, and edit it to set a custom long secret value (if required). Setting a secret will require that secret value to be present in a file called ‘secret’ in the root of the USB drive, otherwise commands will not be executed.
+6. Copy the cmdusb.sh script to /usr/local/bin/cmdusb.sh, and edit it to set a custom long secret value (if required). Setting a secret will require that secret value to be present in a file called ‘secret’ in the root of the USB drive, otherwise commands will not be executed.
 
 
 Changelog -
