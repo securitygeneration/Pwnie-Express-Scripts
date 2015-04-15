@@ -24,7 +24,8 @@ These files are to be used in conjunction with the tutorial found at the URL abo
 
 Instructions
 
-1. Format a USB stick with an ext3 filesystem. Note: format the entire device (sda, sdb) and not just a partition (sda1, sdb1): 
+1. Format a USB stick with an ext3 filesystem. Note: format the entire device (sda, sdb) and not just a partition (sda1, sdb1):
+
   ```shell
   mkfs.ext3 /dev/sda (change this to your correct device)
   ```
@@ -44,7 +45,7 @@ Instructions
   ```shell
   KERNEL=="sd?", SUBYSTEM=="usb", ATTRS{model}=="*", SYMLINK+="cmdusb%n", RUN+="/bin/sh /usr/local/bin/cmdusb.sh"
   ```
-  
+
   *Side note: If you want to only allow one specific USB drive to be used to run commands, enter your USB device’s model into the ATTRS{model} value above (instead of the wildcard). You can obtain your USB stick’s ID by running the following command (it’ll look something like: ATTRS{model}==”Flash Disk“), make sure your correct device is used (sda or sdb):
   ```shell
   udevadm info -a -p /sys/block/sda | grep model
