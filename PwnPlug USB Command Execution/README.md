@@ -30,18 +30,22 @@ Instructions
   mkfs.ext3 /dev/sda (change this to your correct device)
   ```
 2. Run apt-get update and install udev and autofs:
+
   ```shell
   apt-get update && apt-get install udev autofs
   ```
 3. Edit /etc/auto.master and append the following line:
+
   ```shell
   /var/autofs/removable /etc/auto.removable --timeout=2
   ```
 4. Create /etc/auto.removable and copy in the following line:
+
   ```shell
   cmdusb -fstype=ext3 :/dev/cmdusb
   ```
 5. Create /etc/udev/rules.d/custom.rules and add the following line:
+
   ```shell
   KERNEL=="sd?", SUBYSTEM=="usb", ATTRS{model}=="*", SYMLINK+="cmdusb%n", RUN+="/bin/sh /usr/local/bin/cmdusb.sh"
   ```
