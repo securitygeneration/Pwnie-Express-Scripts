@@ -44,7 +44,7 @@ Instructions
   ```shell
   KERNEL=="sd?", SUBYSTEM=="usb", ATTRS{model}=="*", SYMLINK+="cmdusb%n", RUN+="/bin/sh /usr/local/bin/cmdusb.sh"
   ```
-  Side note: If you want to only allow one specific USB drive to be used to run commands, enter your USB device’s model into the ATTRS{model} value above (instead of the wildcard). You can obtain your USB stick’s ID by running the following command (it’ll look something like: ATTRS{model}==”Flash Disk“), make sure your correct device is used (sda or sdb):
+  *Side note: If you want to only allow one specific USB drive to be used to run commands, enter your USB device’s model into the ATTRS{model} value above (instead of the wildcard). You can obtain your USB stick’s ID by running the following command (it’ll look something like: ATTRS{model}==”Flash Disk“), make sure your correct device is used (sda or sdb):
   ```shell
   udevadm info -a -p /sys/block/sda | grep model
   ```
