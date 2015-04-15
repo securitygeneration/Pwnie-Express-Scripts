@@ -29,28 +29,26 @@ Instructions
   mkfs.ext3 /dev/sda (change this to your correct device)
   ```
 2. Run apt-get update and install udev and autofs:
-```shell
-apt-get update && apt-get install udev autofs
-```
+  ```shell
+  apt-get update && apt-get install udev autofs
+  ```
 3. Edit /etc/auto.master and append the following line:
-```shell
-/var/autofs/removable /etc/auto.removable --timeout=2
-```
+  ```shell
+  /var/autofs/removable /etc/auto.removable --timeout=2
+  ```
 4. Create /etc/auto.removable and copy in the following line:
-```shell
-cmdusb -fstype=ext3 :/dev/cmdusb
-```
+  ```shell
+  cmdusb -fstype=ext3 :/dev/cmdusb
+  ```
 5. Create /etc/udev/rules.d/custom.rules and add the following line:
-```shell
-KERNEL=="sd?", SUBYSTEM=="usb", ATTRS{model}=="*", SYMLINK+="cmdusb%n", RUN+="/bin/sh /usr/local/bin/cmdusb.sh"
-```
-Side note: If you want to only allow one specific USB drive to be used to run commands, enter your USB device’s model into the ATTRS{model} value above (instead of the wildcard). You can obtain your USB stick’s ID by running the following command (it’ll look something like: ATTRS{model}==”Flash Disk“), make sure your correct device is used (sda or sdb):
-```shell
-udevadm info -a -p /sys/block/sda | grep model
-```
+  ```shell
+  KERNEL=="sd?", SUBYSTEM=="usb", ATTRS{model}=="*", SYMLINK+="cmdusb%n", RUN+="/bin/sh /usr/local/bin/cmdusb.sh"
+  ```
+  Side note: If you want to only allow one specific USB drive to be used to run commands, enter your USB device’s model into the ATTRS{model} value above (instead of the wildcard). You can obtain your USB stick’s ID by running the following command (it’ll look something like: ATTRS{model}==”Flash Disk“), make sure your correct device is used (sda or sdb):
+  ```shell
+  udevadm info -a -p /sys/block/sda | grep model
+  ```
 6. Copy cmdusb.sh to /usr/local/bin/cmdusb.sh, and edit it to set a custom long secret value (if required). Setting a secret will require that secret value to be present in a file called ‘secret’ in the root of the USB drive, otherwise commands will not be executed.
-
-
 
 
 Changelog -
