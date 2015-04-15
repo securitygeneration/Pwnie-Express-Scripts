@@ -29,7 +29,7 @@ Instructions
   ```shell
   mkfs.ext3 /dev/sda (change this to your correct device)
   ```
-2. Run apt-get update and install udev and autofs:
+2. Install udev and autofs:
 
   ```shell
   apt-get update && apt-get install udev autofs
