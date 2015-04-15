@@ -68,7 +68,7 @@ chmod a+x /usr/local/bin/cmdusb.sh
 ```
 
 ## Setting up the USB stick
-Commands to be executed must be placed in a bash file called ‘command.sh’ in the root of the USB drive. Make sure that command.sh begins with “#!/bin/sh”, and then place one command on each line (also best to end each line with a semicolon). You must use the full path to executables and files in command.sh, so for ifconfig you would have to enter '/sbin/ifconfig'. If you don’t know the full path for a particular command you can type `which <command>` to find it. You may need to ‘chmod a+x command.sh’ as well.
+Commands to be executed must be placed in a bash file called ‘command.sh’ in the root of the USB drive. Make sure that command.sh begins with “#!/bin/sh”, and then place one command on each line (also best to end each line with a semicolon). You must use the full path to executables and files in command.sh, so for ifconfig you would have to enter '/sbin/ifconfig'. You may need to ‘chmod a+x command.sh’ as well.
 
 If you set a secret in cmdusb.sh above (“changeme” by default), then you will need to place the same value in a file called ‘secret’ in the root of the USB drive.
 
