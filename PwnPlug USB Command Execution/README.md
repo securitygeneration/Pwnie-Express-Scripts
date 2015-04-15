@@ -25,9 +25,9 @@ These files are to be used in conjunction with the tutorial found at the URL abo
 Instructions
 
 1. Format a USB stick with an ext3 filesystem. Note: format the entire device (sda, sdb) and not just a partition (sda1, sdb1): 
-```shell
-mkfs.ext3 /dev/sda (change this to your correct device)
-```
+  ```shell
+  mkfs.ext3 /dev/sda (change this to your correct device)
+  ```
 2. Run apt-get update and install udev and autofs:
 ```shell
 apt-get update && apt-get install udev autofs
