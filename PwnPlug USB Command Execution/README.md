@@ -29,7 +29,7 @@ These files are to be used in conjunction with the tutorial found at the URL abo
   ```shell
   mkfs.ext3 /dev/sda (change this to your correct device)
   ```
-2. Install udev and autofs:
+2. On your PwnPlug, install udev and autofs:
 
   ```shell
   apt-get update && apt-get install udev autofs
