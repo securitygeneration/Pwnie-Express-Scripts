@@ -22,7 +22,7 @@ http://www.securitygeneration.com/security/pwn-plug-command-execution-using-usb-
 
 These files are to be used in conjunction with the tutorial found at the URL above. They allow you to run commands on the Pwnie Express PwnPlug by simply inserting a pre-configured USB stick.
 
-Instructions
+## Instructions
 
 1. Format a USB stick with an ext3 filesystem. Note: format the entire device (sda, sdb) and not just a partition (sda1, sdb1):
 
@@ -56,6 +56,23 @@ Instructions
   ```
 6. Copy the [cmdusb.sh](cmdusb.sh) script to /usr/local/bin/cmdusb.sh, and edit it to set a custom long secret value (if required). Setting a secret will require that secret value to be present in a file called ‘secret’ in the root of the USB drive, otherwise commands will not be executed.
 
+7. Set correct permissions on cmdusb.sh:
+
+```shell
+chmod a+x /usr/local/bin/cmdusb.sh
+```
+8. Restart autofs and udev:
+
+```shell
+/etc/init.d/autofs restart && /etc/init.d/udev restart
+```
+
+## Setting up the USB stick
+Commands to be executed must be placed in a bash file called ‘command.sh’ in the root of the USB drive. Make sure that command.sh begins with “#!/bin/sh”, and then place one command on each line (also best to end each line with a semicolon). You must use the full path to executables and files in command.sh, so for ifconfig you would have to enter /sbin/ifconfig. If you don’t know the full path for a particular command you can type which <command> to find it. You may need to ‘chmod a+x command.sh’ as well.
+
+If you set a secret in cmdusb.sh above (“changeme” by default), then you will need to place the same value in a file called ‘secret’ in the root of the USB drive.
+
+Once you’re all set, just plug the USB stick in, wait 10 seconds or so (plus however long you expect your commands to take), then unplug it. Any output from the command(s) will be piped into a file called ‘log.txt’, which you can read by plugging it into your computer. Note your computer will need to be able to read the ext3 filesystem to mount the USB drive, so use Linux or install OSXFuse and fuse-ext2 on Mac OS X
 
 Changelog -
 
