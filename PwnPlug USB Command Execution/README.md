@@ -68,11 +68,11 @@ chmod a+x /usr/local/bin/cmdusb.sh
 ```
 
 ## Setting up the USB stick
-Commands to be executed must be placed in a bash file called ‘command.sh’ in the root of the USB drive. Make sure that command.sh begins with “#!/bin/sh”, and then place one command on each line (also best to end each line with a semicolon). You must use the full path to executables and files in command.sh, so for ifconfig you would have to enter /sbin/ifconfig. If you don’t know the full path for a particular command you can type which <command> to find it. You may need to ‘chmod a+x command.sh’ as well.
+Commands to be executed must be placed in a bash file called ‘command.sh’ in the root of the USB drive. Make sure that command.sh begins with “#!/bin/sh”, and then place one command on each line (also best to end each line with a semicolon). You must use the full path to executables and files in command.sh, so for ifconfig you would have to enter '/sbin/ifconfig'. If you don’t know the full path for a particular command you can type `which <command>` to find it. You may need to ‘chmod a+x command.sh’ as well.
 
 If you set a secret in cmdusb.sh above (“changeme” by default), then you will need to place the same value in a file called ‘secret’ in the root of the USB drive.
 
-Once you’re all set, just plug the USB stick in, wait 10 seconds or so (plus however long you expect your commands to take), then unplug it. Any output from the command(s) will be piped into a file called ‘log.txt’, which you can read by plugging it into your computer. Note your computer will need to be able to read the ext3 filesystem to mount the USB drive, so use Linux or install OSXFuse and fuse-ext2 on Mac OS X
+Once you’re all set, just plug the USB stick in, wait 10 seconds or so (plus however long you expect your commands to take), then unplug it. Any output from the command(s) will be piped into a file called ‘log.txt’, which you can read by plugging it into your computer. Note your computer will need to be able to read the ext3 filesystem to mount the USB drive, so use Linux or install OSXFuse and fuse-ext2 on Mac OS X.
 
 Changelog -
 
